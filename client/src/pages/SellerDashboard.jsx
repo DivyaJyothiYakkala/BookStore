@@ -1,5 +1,100 @@
+import { useEffect, useState } from "react";
+import api from "../services/api";
+
 function SellerDashboard() {
-    return <h2>Seller Dashboard</h2>;
+    const [dashboard, setDashboard] = useState(null);
+
+    useEffect(() => {
+        const loadDashboard = async () => {
+            try {
+                const token = localStorage.getItem("token");
+
+                const response = await api.get("/seller/dashboard", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                setDashboard(response.data.dashboard);
+            } catch (error) {
+                console.error("Error loading dashboard:", error);
+            }
+        };
+
+        loadDashboard();
+    }, []);
+
+    if (!dashboard) {
+        return (
+            <div className="container mt-5">
+                <h3>Loading Dashboard...</h3>
+            </div>
+        );
+    }
+
+    return (
+        <div className="container my-5">
+            <h2 className="mb-4 text-center">Seller Dashboard</h2>
+
+            <div className="row g-4">
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Total Books</h5>
+                            <h2>{dashboard.totalBooks}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Total Orders</h5>
+                            <h2>{dashboard.totalOrders}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Total Revenue</h5>
+                            <h2>₹{dashboard.totalRevenue}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Pending</h5>
+                            <h2>{dashboard.pendingOrders}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Processing</h5>
+                            <h2>{dashboard.processingOrders}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="card text-center shadow-sm">
+                        <div className="card-body">
+                            <h5>Delivered</h5>
+                            <h2>{dashboard.deliveredOrders}</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
 }
 
 export default SellerDashboard;

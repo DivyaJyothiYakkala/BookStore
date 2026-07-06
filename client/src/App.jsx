@@ -12,7 +12,10 @@ import Orders from "./pages/Orders";
 import SellerDashboard from "./pages/SellerDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
-
+import AddBook from "./pages/AddBook";
+import MyBooks from "./pages/MyBooks";
+import EditBook from "./pages/EditBook";
+import SellerOrders from "./pages/SellerOrders";
 
 function App() {
   return(
@@ -28,6 +31,10 @@ function App() {
         <Route path="/seller/dashboard" element={<SellerDashboard />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/seller/add-book" element={<AddBook />} />
+        <Route path="/seller/my-books" element={<MyBooks />} />
+        <Route path="/seller/edit-book/:id" element={<EditBook />} />
+        <Route path="/seller/orders" element={<SellerOrders />} />
       </Routes>
     </MainLayout>
   );

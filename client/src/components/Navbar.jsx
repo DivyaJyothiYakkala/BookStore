@@ -58,11 +58,6 @@ function Navbar() {
 
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/orders">
-                                        Orders
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/orders">
                                         My Orders
                                     </Link>
                                 </li>
@@ -70,11 +65,31 @@ function Navbar() {
                         )}
 
                         {user?.role === "seller" && (
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/seller/dashboard">
-                                    Seller Dashboard
-                                </Link>
-                            </li>
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/seller/dashboard">
+                                        Dashboard
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/seller/add-book">
+                                        Add Book
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/seller/my-books">
+                                        My Books
+                                    </Link>
+                                </li>
+
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/seller/orders">
+                                        Orders
+                                    </Link>
+                                </li>
+                            </>
                         )}
 
                         {user?.role === "admin" && (

@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 
 function Home() {
-    return(
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    return (
         <>
-            <section className="texr-center py-5 bg-light rounded">
+            <section className="text-center py-5 bg-light rounded">
                 <div className="container">
                     <h1 className="display-4 fw-bold">
                         Welcome to Book Store
                     </h1>
 
                     <p className="lead mt-3">
-                        Discover your next favorite book from thousandsof titles across differnt genres.
+                        Discover your next favorite book from thousands of titles across different genres.
                     </p>
 
                     <div className="mt-4">
@@ -18,12 +20,37 @@ function Home() {
                             Browse Books
                         </Link>
 
-                        <Link to="/login" className="btn btn-outline-dark">
-                            Login
-                        </Link>
+                        {!user && (
+                            <Link to="/login" className="btn btn-outline-dark">
+                                Login
+                            </Link>
+                        )}
+
+                        {user?.role === "user" && (
+                            <Link to="/cart" className="btn btn-success">
+                                My Cart
+                            </Link>
+                        )}
+
+                        {user?.role === "seller" && (
+                            <Link
+                                to="/seller/dashboard"
+                                className="btn btn-success"
+                            >
+                                Seller Dashboard
+                            </Link>
+                        )}
+
+                        {user?.role === "admin" && (
+                            <Link
+                                to="/admin/dashboard"
+                                className="btn btn-success"
+                            >
+                                Admin Dashboard
+                            </Link>
+                        )}
                     </div>
                 </div>
-
             </section>
 
             <section className="container my-5">
