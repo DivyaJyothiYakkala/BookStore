@@ -30,7 +30,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/seller", sellerRoutes);
 
 app.get("/",(req,res)=> {
-  res.send("BookNest Backend Running");
+  res.send("Book Store Backend Running");
 });
 
 app.get("/api/profile", authMiddleware, (req, res) => {

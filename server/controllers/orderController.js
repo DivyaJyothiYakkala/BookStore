@@ -20,7 +20,7 @@ const placeOrder = async (req, res) => {
         for (const item of cartItems) {
             if(item.book.stock < item.quantity) {
                 return res.status(400).json({
-                    message: '${item.book.title} is out of stock'
+                    message: `${item.book.title} is out of stock`
                 });
             }
 
