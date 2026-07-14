@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function Cart() {
+    const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
@@ -84,28 +86,6 @@ function Cart() {
         }
     };
 
-    const handlePlaceOrder = async () => {
-        try {
-            const token = localStorage.getItem("token");
-
-            const response = await api.post(
-                "/orders",
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            alert(response.data.message);
-            
-            setCartItems([]);
-        } catch (error) {
-            console.error("Error placing order:", error);
-            alert(error.response?.data?.message || "Failed to place order");
-        }
-    };
-
     return (
         <div className="container my-5">
             <h2 className="mb-4">My Cart</h2>
@@ -172,13 +152,14 @@ function Cart() {
             <div className="text-end">
                 <button 
                     className="btn btn-success"
-                    onClick={handlePlaceOrder}
+                    onClick={() => navigate("/payment")}
                 >
                     Place order
                 </button>
             </div>
         </div>
     );
+    
 }
 
 export default Cart;

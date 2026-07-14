@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
+import Loading from "../components/Loading";
 
 function SellerDashboard() {
     const [dashboard, setDashboard] = useState(null);
@@ -25,70 +26,62 @@ function SellerDashboard() {
     }, []);
 
     if (!dashboard) {
-        return (
-            <div className="container mt-5">
-                <h3>Loading Dashboard...</h3>
-            </div>
-        );
+        return <Loading />
     }
 
     return (
-        <div className="container my-5">
-            <h2 className="mb-4 text-center">Seller Dashboard</h2>
+        <div className="container py-5">
+            <h2 className="text-center fw-bold mb-5">
+                📊 Seller Dashboard
+            </h2>
 
             <div className="row g-4">
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Total Books</h5>
-                            <h2>{dashboard.totalBooks}</h2>
-                        </div>
+                    <div className="card bg-primary text-white shadow border-0 rounded-4 text-center p-4">
+                        <h1>📚</h1>
+                        <h5>Total Books</h5>
+                        <h2 className="text-primary">{dashboard.totalBooks}</h2>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Total Orders</h5>
-                            <h2>{dashboard.totalOrders}</h2>
-                        </div>
+                    <div className="card bg-warning shadow border-0 rounded-4 text-center p-4">
+                        <h1>🛒</h1>
+                        <h5>Total Orders</h5>
+                        <h2>{dashboard.totalOrders}</h2>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Total Revenue</h5>
-                            <h2>₹{dashboard.totalRevenue}</h2>
-                        </div>
+                    <div className="card bg-success text-white shadow border-0 rounded-4 text-center p-4">
+                        <h1>💰</h1>
+                        <h5>Total Revenue</h5>
+                        <h2>₹{dashboard.totalRevenue}</h2>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Pending</h5>
-                            <h2>{dashboard.pendingOrders}</h2>
-                        </div>
+                    <div className="card bg-secondary text-white shadow border-0 rounded-4 text-center p-4">
+                        <h1>⏳</h1>
+                        <h5>Pending</h5>
+                        <h2>{dashboard.pendingOrders}</h2>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Processing</h5>
-                            <h2>{dashboard.processingOrders}</h2>
-                        </div>
+                    <div className="card bg-info text-white shadow border-0 rounded-4 text-center p-4">
+                        <h1>⚙️</h1>
+                        <h5>Processing</h5>
+                        <h2>{dashboard.processingOrders}</h2>
                     </div>
                 </div>
 
                 <div className="col-md-4">
-                    <div className="card text-center shadow-sm">
-                        <div className="card-body">
-                            <h5>Delivered</h5>
-                            <h2>{dashboard.deliveredOrders}</h2>
-                        </div>
+                    <div className="card bg-dark text-white shadow border-0 rounded-4 text-center p-4">
+                        <h1>✅</h1>
+                        <h5>Delivered</h5>
+                        <h2>{dashboard.deliveredOrders}</h2>
                     </div>
                 </div>
 
